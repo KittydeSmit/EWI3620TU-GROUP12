@@ -9,7 +9,7 @@
  * by other classes if you pass a reference to them, but this should be done with 
  * caution.
  * 
- * @author Bruno Scheele
+ * @author Bruno Scheele hahahah
  *
  */
 public class Camera extends GameObject {
