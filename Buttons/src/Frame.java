@@ -7,14 +7,21 @@ public class Frame {
 	public static void main(String[] args) {
 		JFrame test= new JFrame("test");
 		JButton button=Button.newButton("plaatje.png","plaatje2.png","plaatje3.png");
-		test.setBackground(Color.orange);
-		test.setLayout(new GridLayout(2,3,5,5));
-		test.add(new JLabel(""));
-		test.add(button);
-		test.add(new JLabel("test1"));
-		test.add(new JLabel("test2"));
-		test.add(new JLabel("test3"));
-		test.add(new JLabel("test4"));
+		JPanel paneel=new JPanel();
+		test.setContentPane(paneel);
+		paneel.setBackground(Color.black);
+		paneel.setLayout(new BoxLayout(paneel,BoxLayout.Y_AXIS));
+		paneel.add(Box.createRigidArea(new Dimension(20,20)));
+		button.setAlignmentX(paneel.CENTER_ALIGNMENT);
+		paneel.add(button);
+		paneel.add(Box.createRigidArea(new Dimension(20,20)));
+		paneel.add(new JLabel("button2"));
+		paneel.add(Box.createRigidArea(new Dimension(20,20)));
+		paneel.add(new JLabel("button3"));
+		paneel.add(Box.createRigidArea(new Dimension(20,20)));
+		paneel.add(new JLabel("button4"));
+		paneel.add(Box.createRigidArea(new Dimension(20,20)));
+		paneel.add(new JLabel("button5"));
 		test.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		test.setVisible(true);
 	}
