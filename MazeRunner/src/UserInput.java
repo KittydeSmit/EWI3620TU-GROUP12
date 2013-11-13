@@ -83,7 +83,7 @@ public class UserInput extends Control
 	public void keyPressed(KeyEvent event)
 	{
 		if(event.getKeyCode() == KeyEvent.VK_W){
-			forward = true;
+			up = true;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_A){
 			left = true;
@@ -92,7 +92,10 @@ public class UserInput extends Control
 			right = true;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_S){
-			back = true;
+			down = true;
+		}
+		if(event.getKeyCode() == KeyEvent.VK_B){
+			begin = true;
 		}
 	}
 
@@ -100,7 +103,7 @@ public class UserInput extends Control
 	public void keyReleased(KeyEvent event)
 	{
 		if(event.getKeyCode() == KeyEvent.VK_W){
-			forward = false;
+			up = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_A){
 			left = false;
@@ -109,7 +112,7 @@ public class UserInput extends Control
 			right = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_S){
-			back = false;
+			down = false;
 		}
 	}
 

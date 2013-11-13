@@ -18,28 +18,29 @@
  */
 public abstract class Control
 {
-	protected boolean forward = false;
-	protected boolean back = false;
+	protected boolean up = false;
+	protected boolean down = false;
 	protected boolean left = false;
 	protected boolean right = false;
+	protected boolean begin = false;
 	
 	protected int dX = 0;
 	protected int dY = 0;
 	
 	/**
-	 * @return Returns true if forward motion is desired.
+	 * @return Returns true if up motion is desired.
 	 */
-	public boolean getForward()
+	public boolean getUp()
 	{
-		return forward;
+		return up;
 	}
 	
 	/**
-	 * @return Returns true if backwards motion is desired.
+	 * @return Returns true if down motion is desired.
 	 */
-	public boolean getBack()
+	public boolean getDown()
 	{
-		return back;
+		return down;
 	}
 	
 	/**

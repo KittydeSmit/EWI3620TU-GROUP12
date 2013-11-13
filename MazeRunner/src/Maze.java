@@ -24,20 +24,19 @@ import com.sun.opengl.util.GLUT;
 public class Maze implements VisibleObject {
 	
 	public final double MAZE_SIZE = 10;
-	public final double SQUARE_SIZE = 5;
+	public final double SQUARE_SIZE = 10;
 
 	private int[][] maze = 
 	{	{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 },
 		{  1,  0,  0,  0,  0,  0,  0,  0,  0,  1 },
-		{  1,  0,  0,  0,  0,  0,  1,  1,  1,  1 },
-		{  1,  0,  1,  0,  0,  0,  1,  0,  0,  1 },
-		{  1,  0,  1,  0,  1,  0,  1,  0,  0,  1 },
-		{  1,  0,  1,  0,  1,  0,  1,  0,  0,  1 },
-		{  1,  0,  0,  0,  1,  0,  1,  0,  0,  1 },
-		{  1,  0,  0,  0,  1,  1,  1,  0,  0,  1 },
-		{  1,  0,  0,  0,  0,  0,  0,  0,  0,  1 },
-		{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 }	};
-
+		{  1,  0,  1,  0,  1,  0,  1,  1,  1,  1 },
+		{  1,  0,  1,  0,  1,  0,  1,  0,  1,  1 },
+		{  1,  0,  1,  0,  1,  0,  1,  0,  1,  1 },
+		{  1,  0,  1,  0,  1,  0,  1,  0,  1,  1 },
+		{  1,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
+		{  1,  0,  1,  0,  1,  1,  1,  0,  1,  1 },
+		{  1,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
+		{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 }, };
 	
 	/**
 	 * isWall(int x, int z) checks for a wall.
@@ -96,8 +95,8 @@ public class Maze implements VisibleObject {
 	public void display(GL gl) {
 		GLUT glut = new GLUT();
 
-        // Setting the wall colour and material.
-        float wallColour[] = { 0.5f, 0.0f, 0.7f, 1.0f };				// The walls are purple.
+        // Setting the wall color and material.
+        float wallColour[] = { 0.0f, 0.0f, 1.0f, 1.0f };				// The walls are blue
         gl.glMaterialfv( GL.GL_FRONT, GL.GL_DIFFUSE, wallColour, 0);	// Set the materials used by the wall.
 
         // draw the grid with the current material
@@ -113,6 +112,7 @@ public class Maze implements VisibleObject {
 			}
 		}
 		paintSingleFloorTile( gl, MAZE_SIZE * SQUARE_SIZE );			// Paint the floor.
+		paintSingleCeilingTile( gl, MAZE_SIZE * SQUARE_SIZE );			// Paint the ceiling.
 	}
 	
 	/**
@@ -134,5 +134,20 @@ public class Maze implements VisibleObject {
 	        gl.glVertex3d(size, 0, size);
 	        gl.glVertex3d(size, 0, 0);		
 		gl.glEnd();	
-	}	
+	}
+	
+	private void paintSingleCeilingTile(GL gl, double size)
+	{
+        // Setting the floor color and material.
+        float wallColour[] = { 0.0f, 0.0f, 1.0f, 1.0f };				// The ceiling is blue.
+        gl.glMaterialfv( GL.GL_FRONT, GL.GL_DIFFUSE, wallColour, 0);	// Set the materials used by the ceiling.
+
+        gl.glNormal3d(0, 1, 0);
+		gl.glBegin(GL.GL_QUADS);
+	        gl.glVertex3d(size, SQUARE_SIZE, 0);
+	        gl.glVertex3d(size, SQUARE_SIZE, size);
+	        gl.glVertex3d(0, SQUARE_SIZE, size);
+	        gl.glVertex3d(0, SQUARE_SIZE, 0);
+		gl.glEnd();	
+	}
 }

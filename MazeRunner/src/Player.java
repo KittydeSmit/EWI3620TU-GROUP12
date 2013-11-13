@@ -117,16 +117,19 @@ public class Player extends GameObject {
 	 * @param deltaTime The time in milliseconds since the last update.
 	 */
 	public void update(int deltaTime)
-	{
-		if (control != null)
-		{
+	{	
+		if(control != null){
 			control.update();
 			setHorAngle(control.getdX());
 			setVerAngle(control.getdY());
-			
-			if(control.forward){
+			//als je op b drukt begint hij te lopen
+			if(control.begin){
 				locationX = locationX - Math.sin(Math.toRadians(getHorAngle()))*speed*deltaTime;
 				locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle()))*speed*deltaTime;
+			}
+			//moeten view gaan fixen, iets met setVrpX, setVrpY, setVrpZ
+			if(control.up){
+				locationY = locationY + speed*deltaTime;
 			}
 			if(control.left){
 				locationX = locationX + Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
@@ -136,10 +139,10 @@ public class Player extends GameObject {
 				locationX = locationX - Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
 				locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
 			}
-			if(control.back){
-				locationX = locationX + Math.sin(Math.toRadians(getHorAngle()))*speed*deltaTime;
-				locationZ = locationZ + Math.cos(Math.toRadians(getHorAngle()))*speed*deltaTime;
+			if(control.down){
+				locationY = locationY - speed*deltaTime;
 			}
 		}
+		
 	}
 }
