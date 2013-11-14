@@ -34,5 +34,16 @@ public class Maze {
 		}
 		this.maze = mirror;
 	}
+	
+	public String toString(){
+		String str = "";
+		for(int i = 0; i < this.getDim(); i++){
+			for(int j = 0; j < this.getDim(); j++){
+				str = str + this.maze[i][j] + " ";
+			}
+			str = str + "\n";
+		}
+		return null;
+	}
 
 }

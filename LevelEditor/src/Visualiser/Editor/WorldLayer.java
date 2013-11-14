@@ -13,7 +13,7 @@ import Visualiser.Editor.Maze;
  */
 public class WorldLayer {
 	
-	private Maze maze;
+	public Maze maze;
 	private World world;
 	
 	/**
@@ -33,7 +33,7 @@ public class WorldLayer {
 	 * @param wor De wereld waaruit de laag wordt opgevraagd
 	 * @return Retourneert een maze die deze verticale laag van de wereld voorstelt
 	 */
-	public static WorldLayer getVerticalMazeI(int iCoord, World wor){
+	public WorldLayer getVerticalMazeI(int iCoord, World wor){
 		WorldLayer wl = new WorldLayer(wor);
 		int dim = wor.getDim();
 		Maze layer = new Maze(dim);
@@ -55,7 +55,7 @@ public class WorldLayer {
 	 * @param wor De wereld waaruit de laag wordt opgevraagd
 	 * @return Retourneert een maze die deze verticale laag van de wereld voorstelt
 	 */
-	public static WorldLayer getVerticalMazeJ(int jCoord, World wor){
+	public WorldLayer getVerticalMazeJ(int jCoord, World wor){
 		WorldLayer wl = new WorldLayer(wor);
 		int dim = wor.getDim();
 		Maze layer = new Maze(dim);
@@ -77,7 +77,7 @@ public class WorldLayer {
 	 * @param wor De wereld waaruit de laag wordt opgevraagd
 	 * @return Retourneert een maze die deze horizontale laag van de wereld voorstelt
 	 */
-	public static WorldLayer getHorizontalMazeH(int hCoord, World wor){
+	public WorldLayer getHorizontalMazeH(int hCoord, World wor){
 		WorldLayer wl = new WorldLayer(wor);
 		int dim = wor.getDim();
 		Maze layer = new Maze(dim);

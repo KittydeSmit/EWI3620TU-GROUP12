@@ -1,5 +1,7 @@
 package Visualiser.Editor;
 
+import Visualiser.Editor.WorldLayer;
+
 //import Visualise.Assets;
 /**
  * De klasse World is de hoofdklasse van de omgeving van het spel. Hierin kunnen werelden
@@ -81,6 +83,21 @@ public class World {
 	 */
 	public int getCoordValue(int i, int j, int h){
 		return world[h].getMazeCoord(i, j);
+	}
+	
+	public WorldLayer getVertLayerI(int iCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		return wl.getVerticalMazeI(iCoord, wor);
+	}
+	
+	public WorldLayer getVertLayerJ(int jCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		return wl.getVerticalMazeJ(jCoord, wor);
+	}
+	
+	public WorldLayer getHoriLayerH(int hCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		return wl.getHorizontalMazeH(hCoord, wor);
 	}
 
 }

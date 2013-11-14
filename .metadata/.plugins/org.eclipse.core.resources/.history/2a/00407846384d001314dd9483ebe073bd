@@ -1,0 +1,22 @@
+package Writer;
+
+import Visualiser.Editor.*;
+import java.io.*;
+
+public class WriteWorld {
+	
+	public static void WorldWriter(World wor) throws IOException{
+		int dim = wor.getDim();
+		String name = wor.getName();
+		File level = new File(name + ".txt");
+		BufferedWriter out;
+		try{
+			out = new BufferedWriter(new FileWriter(level));
+		}
+		catch(FileNotFoundException excepzione){
+			System.out.println("File voor wegschrijven van " + name + " is niet gevonden, check");
+		}
+		
+	}
+
+}
