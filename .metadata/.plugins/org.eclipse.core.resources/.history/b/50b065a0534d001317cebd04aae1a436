@@ -85,34 +85,16 @@ public class World {
 		return world[h].getMazeCoord(i, j);
 	}
 	
-	/**
-	 * Geeft de verticale laag van de wereld op de opgegeven i-coordinaat
-	 * <p>
-	 * @param iCoord De i-coordinaat van de opgevraagde verticale laag
-	 * @return Retourneert de verticale laag
-	 */
-	public WorldLayer getVertLayerI(int iCoord){
-		WorldLayer wl = new WorldLayer(this);
-		return wl.getVerticalMazeI(iCoord, this);
+	public WorldLayer getVertLayerI(int iCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		return wl.getVerticalMazeI(iCoord, wor);
 	}
 	
-	/**
-	 * Geeft de verticale laag van de wereld op de opgegeven j-coordinaat
-	 * <p>
-	 * @param jCoord De j-coordinaat van de opgevraagde verticale laag
-	 * @return Retourneert de verticale laag
-	 */
-	public WorldLayer getVertLayerJ(int jCoord){
-		WorldLayer wl = new WorldLayer(this);
-		return wl.getVerticalMazeJ(jCoord, this);
+	public WorldLayer getVertLayerJ(int jCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		return wl.getVerticalMazeJ(jCoord, wor);
 	}
 	
-	/**
-	 * Geeft de horizontale laag van de wereld op de opgegeven h-coordinaat
-	 * <p>
-	 * @param hCoord De h-coordinaat van de opgevraagde horizontale laag
-	 * @return Retourneert de horizontale laag
-	 */
 	public WorldLayer getHoriLayerH(int hCoord){
 		WorldLayer wl = new WorldLayer(this);
 		return wl.getHorizontalMazeH(hCoord, this);

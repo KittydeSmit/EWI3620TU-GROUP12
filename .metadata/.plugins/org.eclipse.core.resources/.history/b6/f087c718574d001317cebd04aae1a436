@@ -13,14 +13,6 @@ public class WriteWorld {
 	
 	private World world;
 	
-	/**
-	 * De WorldWriter maakt de Writer aan die doorgegeven wordt aan MazeWriter en geeft de naam van de World
-	 * ook aan de .txt file waarin uiteindelijk geschreven wordt. Na het schrijven van de dimensie van de
-	 * World wordt de MazeWriter dimensie maal opgeroepen
-	 * <p>
-	 * @param wor De World die geschreven moet worden
-	 * @throws IOException Een exception kan opgegooid worden als de naam van de .txt file niet gevonden kan worden
-	 */
 	public void WorldWriter(World wor) throws IOException{
 		int dim = wor.getDim();
 		world = wor;
@@ -46,14 +38,6 @@ public class WriteWorld {
 		}
 	}
 	
-	/**
-	 * MazeWriter schrijft de string representaties van de Mazes, waaruit de World bestaat, naar de .txt file
-	 * onder elkaar, gescheiden door een witregel
-	 * <p>
-	 * @param out De BufferedWriter die doorgegeven is door WorldWriter
-	 * @param height Geeft aan welke Maze(op hoogte height in de World) geschreven moet worden naar de .txt file
-	 * @throws IOException Gooit een exception op als er een schrijffout is
-	 */
 	public void MazeWriter(BufferedWriter out, int height) throws IOException{
 		try{
 		out.write(world.getHoriLayerH(height).maze.toString());

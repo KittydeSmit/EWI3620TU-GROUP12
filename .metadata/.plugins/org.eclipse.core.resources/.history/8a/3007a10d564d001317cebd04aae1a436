@@ -70,11 +70,7 @@ public class Maze {
 		}
 		this.maze = mirror;
 	}
-	/**
-	 * Geeft een String representatie van de opgegeven Maze
-	 * <p>
-	 * @return Retourneert de Maze als String
-	 */
+	
 	public String toString(){
 		String str = "";
 		for(int i = 0; i < this.getDim(); i++){
@@ -83,7 +79,7 @@ public class Maze {
 			}
 			str = str + "\n";
 		}
-		return str;
+		return null;
 	}
 
 }

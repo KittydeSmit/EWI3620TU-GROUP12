@@ -42,22 +42,10 @@ public class Maze {
 		return maze[one][two];
 	}
 	
-	/**
-	 * Geeft de dimensie van de Maze waarmee wordt gewerkt
-	 * <p>
-	 * @return Retourneert de dimensie van de Maze
-	 */
 	public int getDim(){
 		return dimension;
 	}
 	
-	/**
-	 * Deze methode spiegelt de huidige Maze rond een horizontale as. Dit, omdat in de methode get*LayerMaze* de
-	 * van boven naar beneden wordt ingelezen, maar van beneden naar boven wordt geschreven. Deze methode zorgt 
-	 * ervoor dat de uiteindelijke laag die geretourneerd wordt eerst goed gedraaid wordt.
-	 * 
-	 * *note* Deze methode is van een oplossing van stackoverflow.com
-	 */
 	public void mirrorHorizontally(){
 		int dim = this.getDim();
 		int[][] mirror = new int[dim][dim];
@@ -70,11 +58,7 @@ public class Maze {
 		}
 		this.maze = mirror;
 	}
-	/**
-	 * Geeft een String representatie van de opgegeven Maze
-	 * <p>
-	 * @return Retourneert de Maze als String
-	 */
+	
 	public String toString(){
 		String str = "";
 		for(int i = 0; i < this.getDim(); i++){
@@ -83,7 +67,7 @@ public class Maze {
 			}
 			str = str + "\n";
 		}
-		return str;
+		return null;
 	}
 
 }
