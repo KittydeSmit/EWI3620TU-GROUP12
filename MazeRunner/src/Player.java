@@ -120,27 +120,46 @@ public class Player extends GameObject {
 	{	
 		if(control != null){
 			control.update();
-			setHorAngle(control.getdX());
-			setVerAngle(control.getdY());
+			//setHorAngle(control.getdX());
+			//setVerAngle(control.getdY());
 			//als je op b drukt begint hij te lopen
 			if(control.begin){
 				locationX = locationX - Math.sin(Math.toRadians(getHorAngle()))*speed*deltaTime;
 				locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle()))*speed*deltaTime;
+				locationY = locationY + Math.sin(Math.toRadians(getVerAngle()))*speed*deltaTime;
+				
 			}
-			//moeten view gaan fixen, iets met setVrpX, setVrpY, setVrpZ
+			//moeten view gaan fixen
 			if(control.up){
-				locationY = locationY + speed*deltaTime;
+				verAngle = verAngle + 10;
+				control.up = false;
+				verAngle = horAngle;
+				//control.begin = true;
+				
+				//locationY = locationY + speed*deltaTime;
 			}
 			if(control.left){
-				locationX = locationX + Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
-				locationZ = locationZ + Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
+				horAngle=horAngle+10;
+				control.left = false;
+				//control.begin = true;
+				
+				//locationX = locationX + Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
+				//locationZ = locationZ + Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
 			}
 			if(control.right){
-				locationX = locationX - Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
-				locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
+				horAngle=horAngle-10;
+				control.right = false;
+				//control.begin = true;
+				
+				//locationX = locationX - Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
+				//locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
 			}
 			if(control.down){
-				locationY = locationY - speed*deltaTime;
+				verAngle = verAngle - 10;
+				control.down = false;
+				//control.begin = true;
+				
+				//locationY = locationY - speed*deltaTime;
 			}
 		}
 		

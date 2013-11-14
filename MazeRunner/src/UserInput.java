@@ -65,18 +65,18 @@ public class UserInput extends Control
 	@Override
 	public void mousePressed(MouseEvent event)
 	{
-		mouseX = event.getX();
-		mouseY = event.getY();
+		//mouseX = event.getX();
+		//mouseY = event.getY();
 		
-		mouseadX = mousedX;
-		mouseadY = mousedY;
+		//mouseadX = mousedX;
+		//mouseadY = mousedY;
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent event)
 	{		
-		mousedX = mouseX - event.getX() + mouseadX;
-		mousedY = mouseY - event.getY() + mouseadY;
+		//mousedX = mouseX - event.getX() + mouseadX;
+		//mousedY = mouseY - event.getY() + mouseadY;
 	}
 
 	@Override
@@ -84,15 +84,27 @@ public class UserInput extends Control
 	{
 		if(event.getKeyCode() == KeyEvent.VK_W){
 			up = true;
+			left = false;
+			right = false;
+			down = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_A){
 			left = true;
+			up = false;
+			right = false;
+			down = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_D){
 			right = true;
+			up = false;
+			left = false;
+			down = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_S){
 			down = true;
+			up = false;
+			right = false;
+			left = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_B){
 			begin = true;
@@ -102,18 +114,18 @@ public class UserInput extends Control
 	@Override
 	public void keyReleased(KeyEvent event)
 	{
-		if(event.getKeyCode() == KeyEvent.VK_W){
-			up = false;
-		}
-		if(event.getKeyCode() == KeyEvent.VK_A){
-			left = false;
-		}
-		if(event.getKeyCode() == KeyEvent.VK_D){
-			right = false;
-		}
-		if(event.getKeyCode() == KeyEvent.VK_S){
-			down = false;
-		}
+		//if(event.getKeyCode() == KeyEvent.VK_W){
+			//up = false;
+		//}
+		//if(event.getKeyCode() == KeyEvent.VK_A){
+			//left = false;
+		//}
+		//if(event.getKeyCode() == KeyEvent.VK_D){
+			//right = false;
+		//}
+		//if(event.getKeyCode() == KeyEvent.VK_S){
+			//down = false;
+		//}
 	}
 
 	/*

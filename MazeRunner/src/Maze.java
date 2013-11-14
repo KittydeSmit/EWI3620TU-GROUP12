@@ -27,7 +27,7 @@ public class Maze implements VisibleObject {
 	public final double SQUARE_SIZE = 10;
 
 	private int[][] maze = 
-	{	{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 },
+	{	{  1,  1,  1,  1,  1,  1,  1,  1,  1,  1 }, 
 		{  1,  0,  0,  0,  0,  0,  0,  0,  0,  1 },
 		{  1,  0,  1,  0,  1,  0,  1,  1,  1,  1 },
 		{  1,  0,  1,  0,  1,  0,  1,  0,  1,  1 },
@@ -69,6 +69,7 @@ public class Maze implements VisibleObject {
 	{
 		int gX = convertToGridX( x );
 		int gZ = convertToGridZ( z );
+		//int gY = convertToGridY( y );
 		return isWall( gX, gZ );
 	}
 	 
@@ -92,6 +93,16 @@ public class Maze implements VisibleObject {
 		return (int)Math.floor( z / SQUARE_SIZE );
 	}
 	
+	/**
+	 * Converts the double y-coordinate to its correspondent integer coordinate.
+	 * @param y		the double y-coordinate
+	 * @return		the integer y-coordinate
+	 */
+	//private int convertToGridY( double y )
+	//{
+		//return (int)Math.floor( y / SQUARE_SIZE );
+	//}
+	
 	public void display(GL gl) {
 		GLUT glut = new GLUT();
 
@@ -104,11 +115,11 @@ public class Maze implements VisibleObject {
 		{
 	        for( int j = 0; j < MAZE_SIZE; j++ )
 			{
-	            gl.glPushMatrix();
-				gl.glTranslated( i * SQUARE_SIZE + SQUARE_SIZE / 2, SQUARE_SIZE / 2, j * SQUARE_SIZE + SQUARE_SIZE / 2 );
-				if ( isWall(i, j) )
-					glut.glutSolidCube( (float) SQUARE_SIZE );
-				gl.glPopMatrix();
+	        		gl.glPushMatrix();
+	        		gl.glTranslated( i * SQUARE_SIZE + SQUARE_SIZE / 2, SQUARE_SIZE / 2, j * SQUARE_SIZE + SQUARE_SIZE / 2 );
+	        		if ( isWall(i, j) )
+	        			glut.glutSolidCube( (float) SQUARE_SIZE );
+	        		gl.glPopMatrix();
 			}
 		}
 		paintSingleFloorTile( gl, MAZE_SIZE * SQUARE_SIZE );			// Paint the floor.

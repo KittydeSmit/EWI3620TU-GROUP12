@@ -278,11 +278,13 @@ public class MazeRunner extends Frame implements GLEventListener {
 	{
 		double xNow = player.getLocationX();
 		double zNow = player.getLocationZ();
+		//double yNow = player.getLocationY();
 		player.update(deltaTime);
 		
-		if(maze.isWall(player.locationX - 0.2, player.locationZ - 0.2) || maze.isWall(player.locationX + 0.2, player.locationZ - 0.2) || maze.isWall(player.locationX - 0.2, player.locationZ + 0.2) || maze.isWall(player.locationX + 0.2, player.locationZ + 0.2)){
+		if(maze.isWall(player.locationX - 0.2, player.locationZ - 0.2 ) || maze.isWall(player.locationX + 0.2, player.locationZ - 0.2 ) || maze.isWall(player.locationX - 0.2, player.locationZ + 0.2 ) || maze.isWall(player.locationX + 0.2, player.locationZ + 0.2 )){
 			player.setLocationX(xNow);
 			player.setLocationZ(zNow);
+			//player.setLocationY(yNow);
 		}
 	}
 
