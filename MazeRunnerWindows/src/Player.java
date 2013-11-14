@@ -16,7 +16,7 @@
  *
  */
 public class Player extends GameObject {	
-	private double horAngle, verAngle;
+	private double horAngle, verAngle, rotAngle;
 	private double speed;
 	
 	private Control control = null;
@@ -94,6 +94,22 @@ public class Player extends GameObject {
 	 */
 	public void setVerAngle(double verAngle) {
 		this.verAngle = verAngle;
+	}
+	
+	/**
+	 * Returns the rotational angle of the orientation.
+	 * @return the rotAngle
+	 */
+	public double getRotAngle() {
+		return rotAngle;
+	}
+
+	/**
+	 * Sets the rotational angle of the orientation.
+	 * @param the rotAngle to set
+	 */
+	public void setRotAngle(double horAngle) {
+		this.horAngle = rotAngle;
 	}
 	
 	/**

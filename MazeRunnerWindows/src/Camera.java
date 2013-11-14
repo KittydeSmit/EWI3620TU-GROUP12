@@ -13,7 +13,7 @@
  *
  */
 public class Camera extends GameObject {
-	private double horAngle, verAngle;
+	private double horAngle, verAngle, rotAngle;
 	private double vrpX, vrpY, vrpZ;
 	private double vuvX, vuvY, vuvZ;
 	
@@ -59,6 +59,22 @@ public class Camera extends GameObject {
 	 */
 	public void setHorAngle(double horAngle) {
 		this.horAngle = horAngle;
+	}
+	
+	/**
+	 * Returns the rotational angle of the orientation.
+	 * @return the rotAngle
+	 */
+	public double getRotAngle() {
+		return rotAngle;
+	}
+
+	/**
+	 * Sets the rotational angle of the orientation.
+	 * @param the rotAngle to set
+	 */
+	public void setRotAngle(double horAngle) {
+		this.horAngle = rotAngle;
 	}
 
 	/**
