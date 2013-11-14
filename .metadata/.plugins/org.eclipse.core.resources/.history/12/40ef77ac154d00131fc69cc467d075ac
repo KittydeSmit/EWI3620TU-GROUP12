@@ -1,0 +1,25 @@
+package Visualiser.Editor;
+
+public class Maze {
+	
+	private int[][] maze;
+	private int dimension;
+	
+	public Maze(int dim){
+		dimension = dim;
+		maze = new int[dim][dim];
+	}
+	
+	public void setMazeCoord(int one, int two, int bin){
+		maze[one][two] = bin;
+	}
+	
+	public int getMazeCoord(int one, int two){
+		return maze[one][two];
+	}
+	
+	public int getDim(){
+		return dimension;
+	}
+
+}

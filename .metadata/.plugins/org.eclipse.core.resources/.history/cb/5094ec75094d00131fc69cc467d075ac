@@ -1,0 +1,44 @@
+package Visualiser.Editor;
+
+import Visualise.Assets;
+
+public class World {
+	
+	private Maze[] world;
+	private int dimension;
+	private String name;
+	
+	//public Pixmap block; //gelijkstellen aan een Pixmap uit class Assets
+	//public Pixmap wall;  //gelijkstellen aan een Pixmap uit class Assets
+	
+	public World(int dim, String naam){
+		dimension = dim;
+		name = naam;
+		world = new Maze[dim];
+	}
+	
+	public static World newwWorld(int dim, String naam){
+		if(dim > 0){
+			return new World(dim, naam);
+		}
+		return null;
+	}
+	
+	public void resizeWorld(int dim){
+		dimension = dim;
+		world = new Maze[dim];
+	}
+	
+	public int getDim(){
+		return dimension;
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public int getCoordValue(int i, int j, int h){
+		return world[i][j][h];
+	}
+
+}

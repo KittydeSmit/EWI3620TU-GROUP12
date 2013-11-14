@@ -1,0 +1,61 @@
+package Visualiser.Editor;
+
+import Visualiser.Editor.World;
+import Visualiser.Editor.Maze;
+
+public class WorldLayer {
+	
+	private Maze maze;
+	private World world;
+	
+	public WorldLayer(World wor){
+		maze = new Maze(wor.getDim());
+		world = wor;
+	}
+	
+	public static WorldLayer getVerticalMazeI(int iCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		int dim = wor.getDim();
+		Maze layer = new Maze(dim);
+		for(int hCoord = 0; hCoord < dim; hCoord++){
+			for(int jCoord = 0; jCoord < dim; jCoord++){
+				layer.setMazeCoord(hCoord, jCoord, wor.getCoordValue(iCoord, jCoord, hCoord));
+			}
+		}
+		layer.mirrorHorizontally();
+		wl.maze = layer;
+		
+		return wl;
+	}
+	
+	public static WorldLayer getVerticalMazeJ(int jCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		int dim = wor.getDim();
+		Maze layer = new Maze(dim);
+		for(int hCoord = 0; hCoord < dim; hCoord++){
+			for(int iCoord = 0; iCoord < dim; iCoord++){
+				layer.setMazeCoord(hCoord, iCoord, wor.getCoordValue(iCoord, jCoord, hCoord));
+			}
+		}
+		layer.mirrorHorizontally();
+		wl.maze = layer;
+		
+		return wl;
+	}
+	
+	public static WorldLayer getHorizontalMazeH(int hCoord, World wor){
+		WorldLayer wl = new WorldLayer(wor);
+		int dim = wor.getDim();
+		Maze layer = new Maze(dim);
+		for(int iCoord = 0; iCoord < dim; iCoord++){
+			for(int jCoord = 0; jCoord < dim; jCoord++){
+				layer.setMazeCoord(iCoord, jCoord, wor.getCoordValue(iCoord, jCoord, hCoord));
+			}
+		}
+		layer.mirrorHorizontally();
+		wl.maze = layer;
+		
+		return wl;
+	}
+
+}
