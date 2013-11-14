@@ -8,7 +8,6 @@ public class Frame {
 
 	public static void main(String[] args) {
 		JFrame test= new JFrame("test");
-		//ActionListener ac=new ActionListener();
 		JButton button=Button.newButton("plaatje.png","plaatje2.png","plaatje3.png");
 		JPanel paneel=new JPanel();
 		test.setContentPane(paneel);
