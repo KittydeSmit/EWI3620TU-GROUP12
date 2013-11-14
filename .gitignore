@@ -7,6 +7,8 @@
 .metadata/
 bin/
 tmp/
+*.dll
+*.jar
 *.tmp
 *.bak
 *.swp
