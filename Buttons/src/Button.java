@@ -12,7 +12,7 @@ public class Button {
 	public Button(){
 	}
 	
-	public static JButton newButton(String buttonfile, String buttonrolloverfile, String buttonpressedfile, ActionListener actionnaam){
+	public static JButton newButton(String buttonfile, String buttonrolloverfile, String buttonpressedfile){//, ActionListener actionnaam){
 		JButton button = new JButton();
 		//Geef de button zelfde grootte als het plaatje
 		Dimension d=new Dimension(151,89);
@@ -36,7 +36,7 @@ public class Button {
 		
 		
 		
-		button.addActionListener(actionnaam);
+		//button.addActionListener(actionnaam);
 		return button;
 	}
 }
