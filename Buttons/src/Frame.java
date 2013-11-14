@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -6,7 +7,8 @@ public class Frame {
 
 	public static void main(String[] args) {
 		JFrame test= new JFrame("test");
-		JButton button=Button.newButton("plaatje.png","plaatje2.png","plaatje3.png");
+		ActionListener ac=new ActionListener();
+		JButton button=Button.newButton("plaatje.png","plaatje2.png","plaatje3.png",);
 		JPanel paneel=new JPanel();
 		test.setContentPane(paneel);
 		paneel.setBackground(Color.black);
@@ -25,5 +27,4 @@ public class Frame {
 		test.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		test.setVisible(true);
 	}
-
 }

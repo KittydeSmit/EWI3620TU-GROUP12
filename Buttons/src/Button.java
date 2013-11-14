@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,7 +12,7 @@ public class Button {
 	public Button(){
 	}
 	
-	public static JButton newButton(String buttonfile, String buttonrolloverfile, String buttonpressedfile){
+	public static JButton newButton(String buttonfile, String buttonrolloverfile, String buttonpressedfile, ActionListener actionnaam){
 		JButton button = new JButton();
 		//Geef de button zelfde grootte als het plaatje
 		Dimension d=new Dimension(151,89);
@@ -35,7 +36,7 @@ public class Button {
 		
 		
 		
-		//button.addActionListener(Actionlistener a);
+		button.addActionListener(actionnaam);
 		return button;
 	}
 }
