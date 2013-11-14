@@ -17,8 +17,9 @@
  */
 public class Player extends GameObject {	
 	private double horAngle, verAngle, rotAngle;
-	private double speed;
-	
+	private double speed,rotateSpeed = 0.1;
+	private boolean rotating=false;
+	private int x_block_loc,y_block_loc,z_block_loc;
 	private Control control = null;
 	
 	/**
@@ -128,35 +129,34 @@ public class Player extends GameObject {
 		this.speed = speed;
 	}
 
+	
 	/**
 	 * Updates the physical location and orientation of the player
 	 * @param deltaTime The time in milliseconds since the last update.
 	 */
 	public void update(int deltaTime)
-	{	
+	{
 		if(control != null){
 			control.update();
-			setHorAngle(control.getdX());
-			setVerAngle(control.getdY());
 			//als je op b drukt begint hij te lopen
 			if(control.begin){
 				locationX = locationX - Math.sin(Math.toRadians(getHorAngle()))*speed*deltaTime;
+				locationY = locationY + Math.sin(Math.toRadians(getVerAngle()))*speed*deltaTime;
 				locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle()))*speed*deltaTime;
 			}
 			//moeten view gaan fixen, iets met setVrpX, setVrpY, setVrpZ
 			if(control.up){
-				locationY = locationY + speed*deltaTime;
+				verAngle=verAngle+rotateSpeed*deltaTime;
 			}
-			if(control.left){
-				locationX = locationX + Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
-				locationZ = locationZ + Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
+			if(control.left&&!rotating){
+				
+				horAngle=horAngle+rotateSpeed*deltaTime;
 			}
 			if(control.right){
-				locationX = locationX - Math.sin(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
-				locationZ = locationZ - Math.cos(Math.toRadians(getHorAngle())-90)*speed*deltaTime;
+				horAngle=horAngle-rotateSpeed*deltaTime;
 			}
 			if(control.down){
-				locationY = locationY - speed*deltaTime;
+				verAngle=verAngle-rotateSpeed*deltaTime;
 			}
 		}
 		

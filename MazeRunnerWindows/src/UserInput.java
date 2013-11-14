@@ -23,10 +23,6 @@ public class UserInput extends Control
 {
 	int mouseX;
 	int mouseY;
-	int mousedX;
-	int mousedY;
-	int mouseadX;
-	int mouseadY;
 	
 	/**
 	 * UserInput constructor.
@@ -52,8 +48,7 @@ public class UserInput extends Control
 	@Override
 	public void update()
 	{
-		dX = mousedX;
-		dY = mousedY;
+	
 	}
 
 	/*
@@ -67,16 +62,11 @@ public class UserInput extends Control
 	{
 		mouseX = event.getX();
 		mouseY = event.getY();
-		
-		mouseadX = mousedX;
-		mouseadY = mousedY;
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent event)
 	{		
-		mousedX = mouseX - event.getX() + mouseadX;
-		mousedY = mouseY - event.getY() + mouseadY;
 	}
 
 	@Override
@@ -114,6 +104,11 @@ public class UserInput extends Control
 		if(event.getKeyCode() == KeyEvent.VK_S){
 			down = false;
 		}
+		if(event.getKeyCode() == KeyEvent.VK_B){
+			begin = false;
+		}
+		
+		
 	}
 
 	/*

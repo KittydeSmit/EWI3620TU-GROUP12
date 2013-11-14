@@ -16,6 +16,7 @@ public class Camera extends GameObject {
 	private double horAngle, verAngle, rotAngle;
 	private double vrpX, vrpY, vrpZ;
 	private double vuvX, vuvY, vuvZ;
+	private double dx, dy, dz;
 	
 	public Camera( double x, double y, double z, double h, double v ) {
 		// Set the initial position and viewing direction of the player.
