@@ -44,26 +44,26 @@ public class Player extends GameObject {
 		verAngle = v;
 		speed = 0.01;
 	}
-	
-	/**
-	 * Sets the Control object that will control the player's motion
-	 * <p>
-	 * The control must be set if the object should be moved.
-	 * @param input
-	 */
-	public void setControl(Control control)
-	{
-		this.control = control;
-	}
-	
-	/**
-	 * Gets the Control object currently controlling the player
-	 * @return
-	 */
-	public Control getControl()
-	{
-		return control;
-	}
+//	
+//	/**
+//	 * Sets the Control object that will control the player's motion
+//	 * <p>
+//	 * The control must be set if the object should be moved.
+//	 * @param input
+//	 */
+//	public void setControl(Control control)
+//	{
+//		this.control = control;
+//	}
+//	
+//	/**
+//	 * Gets the Control object currently controlling the player
+//	 * @return
+//	 */
+//	public Control getControl()
+//	{
+//		return control;
+//	}
 
 	/**
 	 * Returns the horizontal angle of the orientation.

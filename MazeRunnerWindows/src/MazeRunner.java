@@ -142,7 +142,7 @@ public class MazeRunner extends Frame implements GLEventListener {
 				             player.getHorAngle(), player.getVerAngle() );
 		
 		input = new UserInput(canvas);
-		player.setControl(input);
+		camera.setControl(input);
 	}
 
 /*
@@ -212,12 +212,12 @@ public class MazeRunner extends Frame implements GLEventListener {
 		
 		// Update any movement since last frame.
 		updateMovement(deltaTime);
-		updateCamera();
+		camera.update(deltaTime);
 		 
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT );
 		gl.glLoadIdentity();
         glu.gluLookAt( camera.getLocationX(), camera.getLocationY(), camera.getLocationZ(), 
- 			   camera.getVrpX(), camera.getVrpY(), camera.getVrpZ(),
+ 			   camera.getVrpX()+camera.getLocationX(), camera.getVrpY()+camera.getLocationY(), camera.getVrpZ()+camera.getLocationZ(),
  			   camera.getVuvX(), camera.getVuvY(), camera.getVuvZ() );
 
         // Display all the visible objects of MazeRunner.
@@ -285,21 +285,6 @@ public class MazeRunner extends Frame implements GLEventListener {
 			player.setLocationZ(zNow);
 		}
 	}
-
-	/**
-	 * updateCamera() updates the camera position and orientation.
-	 * <p>
-	 * This is done by copying the locations from the Player, since MazeRunner runs on a first person view.
-	 */
-	private void updateCamera() {
-		camera.setLocationX( player.getLocationX() );
-		camera.setLocationY( player.getLocationY() );  
-		camera.setLocationZ( player.getLocationZ() );
-		camera.setHorAngle( player.getHorAngle() );
-		camera.setVerAngle( player.getVerAngle() );
-		camera.calculateVRP();
-	}
-	
 /*
  * **********************************************
  * *				  Main						*

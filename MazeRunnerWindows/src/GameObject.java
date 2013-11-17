@@ -27,7 +27,10 @@ public class GameObject {
 		locationY = y;
 		locationZ = z;
 	}
+	
 
+	
+	
 	/**
 	 * Sets the x-coordinate of the location.
 	 * @param locationX the locationX to set

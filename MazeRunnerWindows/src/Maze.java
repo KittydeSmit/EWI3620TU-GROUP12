@@ -111,8 +111,6 @@ public class Maze implements VisibleObject {
 				gl.glPopMatrix();
 			}
 		}
-		paintSingleFloorTile( gl, MAZE_SIZE * SQUARE_SIZE );			// Paint the floor.
-		paintSingleCeilingTile( gl, MAZE_SIZE * SQUARE_SIZE );			// Paint the ceiling.
 	}
 	
 	/**

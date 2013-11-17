@@ -13,93 +13,80 @@
  *
  */
 public class Camera extends GameObject {
-	private double horAngle, verAngle, rotAngle;
-	private double vrpX, vrpY, vrpZ;
-	private double vuvX, vuvY, vuvZ;
-	private double dx, dy, dz;
+	private Point VuV,VRP;
+	private Control control = null;
+	private double speed = 0.01, rotatespeed = 0.002;
+	
 	
 	public Camera( double x, double y, double z, double h, double v ) {
 		// Set the initial position and viewing direction of the player.
 		super( x, y, z );
-		horAngle = h;
-		verAngle = v;
 		
-		// Calculate a likely view reference point.
-		calculateVRP();
-		
+		// Calculate a likely view reference point and
 		// Set the view up vector to be parallel to the y-axis of the world.
-		vuvX = 0.0;
-		vuvY = 1.0;
-		vuvZ = 0.0;
-	}
-
-	/**
-	 * Calculates the View Reference Point (VRP) of the camera.
-	 * 
-	 * The VRP of the camera is set to be just 1 in front of the current orientation 
-	 * of the camera. This makes it easy to create a first-person view setting, since it 
-	 * always looks in front of the player.
-	 */
-	public void calculateVRP() {
-		vrpX = locationX + -Math.sin( Math.PI * horAngle / 180 ) * Math.cos( Math.PI * verAngle / 180 );
-		vrpY = locationY + Math.sin( Math.PI * verAngle / 180 );
-		vrpZ = locationZ + -Math.cos( Math.PI * horAngle / 180 ) * Math.cos( Math.PI * verAngle / 180 );
-	}
-
-	/**
-	 * Returns the horizontal angle of the orientation.
-	 * @return the horAngle
-	 */
-	public double getHorAngle() {
-		return horAngle;
-	}
-
-	/**
-	 * Sets the horizontal angle of the orientation.
-	 * @param horAngle the horAngle to set
-	 */
-	public void setHorAngle(double horAngle) {
-		this.horAngle = horAngle;
+		VuV=new Point(0.0,1.0,0.0);
+		VRP=new Point(0.0,0.0,1.0);
 	}
 	
-	/**
-	 * Returns the rotational angle of the orientation.
-	 * @return the rotAngle
+	/** Roteert de camera linksom of rechtsom
+	 * @param a De hoek waarmee de camera links(+) of rechts(-) geroteerd moet worden.
 	 */
-	public double getRotAngle() {
-		return rotAngle;
+	public void rotateLR(double a){
+		double[] VRPloc = rotate(a,VRP.getLocationX(),VRP.getLocationY(),VRP.getLocationZ(),VuV.getLocationX(),VuV.getLocationY(),VuV.getLocationZ());
+		VRP.setLocationX(VRPloc[0]);
+		VRP.setLocationY(VRPloc[1]);
+		VRP.setLocationZ(VRPloc[2]);
 	}
-
-	/**
-	 * Sets the rotational angle of the orientation.
-	 * @param the rotAngle to set
+	
+	/** Roteert de camera omlaag of omhoog
+	 * @param a De hoek waarmee de camera omhoog(+) of omlaag(-) geroteerd moet worden.
 	 */
-	public void setRotAngle(double horAngle) {
-		this.horAngle = rotAngle;
+	public void rotateUD(double a){ 
+		// xVieuw is een vector loodrecht op de VRP en de VuV.(x cooordinaat in vieuwing cooordinaten)
+		Point xVieuw = VuV.innerProduct(VRP);
+		// rotate VRP
+		double[] VRPloc = rotate(a,VRP.getLocationX(),VRP.getLocationY(),VRP.getLocationZ(),xVieuw.getLocationX(),xVieuw.getLocationY(),xVieuw.getLocationZ());
+		VRP.setLocationX(VRPloc[0]);
+		VRP.setLocationY(VRPloc[1]);
+		VRP.setLocationZ(VRPloc[2]);
+		// rotate VuV
+		double[] VuVloc = rotate(a,VuV.getLocationX(),VuV.getLocationY(),VuV.getLocationZ(),xVieuw.getLocationX(),xVieuw.getLocationY(),xVieuw.getLocationZ());
+		VuV.setLocationX(VuVloc[0]);
+		VuV.setLocationY(VuVloc[1]);
+		VuV.setLocationZ(VuVloc[2]);
+		
+		
+		
+		//Bereken nieuw VuV met inner product van VRP en xVieuw
+		
+	
 	}
-
-	/**
-	 * Returns the vertical angle of the orientation.
-	 * @return the verAngle
+	
+	
+	/** rotate the point (x,y,z) about the vector u,v,w by the angle a
+	 * @param a radialen die gedraaid moeten worden
+	 * @param x x cooordinaat die geroteerd moet worden
+	 * @param y y cooordinaat die geroteerd moet worden
+	 * @param z z cooordinaat die geroteerd moet worden
+	 * @param u x cooordinaat van de vector waarom geroteerd wordt
+	 * @param v y cooordinaat van de vector waarom geroteerd wordt
+	 * @param w z cooordinaat van de vector waarom geroteerd wordt
+	 * @return de nieuwe coordinaten [x,y,z] als double[]
 	 */
-	public double getVerAngle() {
-		return verAngle;
-	}
-
-	/**
-	 * Sets the vertical angle of the orientation.
-	 * @param verAngle the verAngle to set
-	 */
-	public void setVerAngle(double verAngle) {
-		this.verAngle = verAngle;
-	}
-
+		public double[] rotate(double a, double x, double y, double z, double u, double v, double w){
+			double newx = ( u*(u*x+v*y+w*z)*(1-Math.cos(a)) + (u*u+v*v+w*w)*x*Math.cos(a) + Math.sqrt(u*u+v*v+w*w)*(v*z-w*y)*Math.sin(a) )/( u*u+v*v+w*w);
+			double newy = ( v*(u*x+v*y+w*z)*(1-Math.cos(a)) + (u*u+v*v+w*w)*y*Math.cos(a) + Math.sqrt(u*u+v*v+w*w)*(w*x-u*z)*Math.sin(a) )/( u*u+v*v+w*w);
+			double newz = ( w*(u*x+v*y+w*z)*(1-Math.cos(a)) + (u*u+v*v+w*w)*z*Math.cos(a) + Math.sqrt(u*u+v*v+w*w)*(u*y-v*x)*Math.sin(a) )/( u*u+v*v+w*w);
+			double[] newlocs = {newx,newy,newz};
+			return newlocs;
+		}
+	
 	/**
 	 * Returns the x-coordinate of the view reference point.
 	 * @return the vrpX
 	 */
 	public double getVrpX() {
-		return vrpX;
+		return VRP.locationX;
 	}
 
 	/**
@@ -107,7 +94,7 @@ public class Camera extends GameObject {
 	 * @param vrpX the vrpX to set
 	 */
 	public void setVrpX(double vrpX) {
-		this.vrpX = vrpX;
+		this.VRP.setLocationX(vrpX);
 	}
 
 	/**
@@ -115,7 +102,7 @@ public class Camera extends GameObject {
 	 * @return the vrpY
 	 */
 	public double getVrpY() {
-		return vrpY;
+		return VRP.locationY;
 	}
 
 	/**
@@ -123,7 +110,7 @@ public class Camera extends GameObject {
 	 * @param vrpY the vrpY to set
 	 */
 	public void setVrpY(double vrpY) {
-		this.vrpY = vrpY;
+		this.VRP.setLocationY(vrpY);
 	}
 
 	/**
@@ -131,7 +118,7 @@ public class Camera extends GameObject {
 	 * @return the vrpZ
 	 */
 	public double getVrpZ() {
-		return vrpZ;
+		return VRP.locationZ;
 	}
 
 	/**
@@ -139,7 +126,7 @@ public class Camera extends GameObject {
 	 * @param vrpZ the vrpZ to set
 	 */
 	public void setVrpZ(double vrpZ) {
-		this.vrpZ = vrpZ;
+		this.VRP.setLocationZ(vrpZ);
 	}
 
 	/**
@@ -147,7 +134,7 @@ public class Camera extends GameObject {
 	 * @return the vuvX
 	 */
 	public double getVuvX() {
-		return vuvX;
+		return VuV.locationX;
 	}
 
 	/**
@@ -155,7 +142,7 @@ public class Camera extends GameObject {
 	 * @param vuvX the vuvX to set
 	 */
 	public void setVuvX(double vuvX) {
-		this.vuvX = vuvX;
+		this.VuV.setLocationX(vuvX);
 	}
 
 	/**
@@ -163,7 +150,7 @@ public class Camera extends GameObject {
 	 * @return the vuvY
 	 */
 	public double getVuvY() {
-		return vuvY;
+		return VuV.locationY;
 	}
 
 	/**
@@ -171,7 +158,7 @@ public class Camera extends GameObject {
 	 * @param vuvY the vuvY to set
 	 */
 	public void setVuvY(double vuvY) {
-		this.vuvY = vuvY;
+		this.VuV.setLocationY(vuvY);
 	}
 
 	/**
@@ -179,7 +166,7 @@ public class Camera extends GameObject {
 	 * @return the vuvZ
 	 */
 	public double getVuvZ() {
-		return vuvZ;
+		return VuV.locationZ;
 	}
 
 	/**
@@ -187,6 +174,61 @@ public class Camera extends GameObject {
 	 * @param vuvZ the vuvZ to set
 	 */
 	public void setVuvZ(double vuvZ) {
-		this.vuvZ = vuvZ;
+		this.VuV.setLocationZ(vuvZ);
+	}
+	
+	/**
+	 * Sets the Control object that will control the camera's motion
+	 * <p>
+	 * The control must be set if the object should be moved.
+	 * @param input
+	 */
+	public void setControl(Control control)
+	{
+		this.control = control;
+	}
+	
+	/**
+	 * Gets the Control object currently controlling the camera
+	 * @return
+	 */
+	public Control getControl()
+	{
+		return control;
+	}
+	/**
+	 * Updates the physical location and orientation of the player
+	 * @param deltaTime The time in milliseconds since the last update.
+	 */
+	public void update(int deltaTime)
+	{
+		if(control != null){
+			control.update();
+			//als je op b drukt begint hij te lopen
+			if(control.begin){
+				System.out.println("VRP: "+VRP.getLocationX()+" "+VRP.getLocationY()+" "+VRP.getLocationZ());
+				VRP.makeUnitVector();
+				System.out.println("VRP: "+VRP.getLocationX()+" "+VRP.getLocationY()+" "+VRP.getLocationZ());
+				System.out.println("VuV: "+VuV.getLocationX()+" "+VuV.getLocationY()+" "+VuV.getLocationZ());
+				
+				
+				locationX = locationX + VRP.getLocationX()*speed*deltaTime;
+				locationY = locationY + VRP.getLocationY()*speed*deltaTime;
+				locationZ = locationZ + VRP.getLocationZ()*speed*deltaTime;
+			}
+			//moeten view gaan fixen, iets met setVrpX, setVrpY, setVrpZ
+			if(control.up){
+				rotateUD(-rotatespeed*deltaTime);
+			}
+			if(control.left){
+				rotateLR(rotatespeed*deltaTime);
+			}
+			if(control.right){
+				rotateLR(-rotatespeed*deltaTime);
+			}
+			if(control.down){
+				rotateUD(rotatespeed*deltaTime);
+			}
+		}
 	}
 }

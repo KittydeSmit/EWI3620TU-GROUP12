@@ -29,7 +29,7 @@ public class Camera extends GameObject {
 		// Set the view up vector to be parallel to the y-axis of the world.
 		vuvX = 0.0;
 		vuvY = 1.0;
-		vuvZ = 0.0;
+		vuvZ = 1.0;
 	}
 
 	/**
