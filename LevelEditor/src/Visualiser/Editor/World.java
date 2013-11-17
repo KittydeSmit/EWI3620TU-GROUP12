@@ -1,6 +1,10 @@
 package Visualiser.Editor;
 
 import Visualiser.Editor.WorldLayer;
+import Writer.WriteWorld;
+import java.util.*;
+import java.io.*;
+import Reader.ReadWorld;
 
 //import Visualise.Assets;
 /**
@@ -12,9 +16,9 @@ import Visualiser.Editor.WorldLayer;
  */
 public class World {
 	
-	private Maze[] world;
-	private int dimension;
-	private String name;
+	public Maze[] level;
+	public int dimension;
+	public String name;
 	
 	//public Pixmap block; //gelijkstellen aan een Pixmap uit class Assets
 	//public Pixmap wall;  //gelijkstellen aan een Pixmap uit class Assets
@@ -28,7 +32,7 @@ public class World {
 	public World(int dim, String naam){
 		dimension = dim;
 		name = naam;
-		world = new Maze[dim];
+		level = new Maze[dim];
 	}
 	
 	/**
@@ -52,7 +56,7 @@ public class World {
 	 */
 	public void resizeWorld(int dim){
 		dimension = dim;
-		world = new Maze[dim];
+		level = new Maze[dim];
 	}
 	
 	/**
@@ -73,6 +77,10 @@ public class World {
 		return name;
 	}
 	
+	public Maze[] getLevel(){
+		return level;
+	}
+	
 	/**
 	 * Geeft de (binaire) waarde terug van een specifiek punt van de wereld
 	 * <p>
@@ -82,7 +90,7 @@ public class World {
 	 * @return Retourneert de (binaire) waarde gevonden op het gespecifeerde punt
 	 */
 	public int getCoordValue(int i, int j, int h){
-		return world[h].getMazeCoord(i, j);
+		return level[h].getMazeCoord(i, j);
 	}
 	
 	/**
@@ -116,6 +124,29 @@ public class World {
 	public WorldLayer getHoriLayerH(int hCoord){
 		WorldLayer wl = new WorldLayer(this);
 		return wl.getHorizontalMazeH(hCoord, this);
+	}
+	
+	public boolean equals(Object obj){
+		boolean theSame = true;
+			
+		if(obj instanceof World){
+			World that = (World) obj;
+			if(this.getDim() != that.getDim()){
+				return !theSame;
+			}else if(this.getDim() == that.getDim()){
+				for(int hCoord = 0; hCoord < this.getDim(); hCoord++){
+					if(!this.level[hCoord].equals(that.level[hCoord])){
+						return !theSame;
+					}
+				}
+			}
+		}
+		return !theSame;
+	}
+	
+	public static World read(Scanner read) throws IOException{
+		World world = ReadWorld.readWorld(read);
+		return world;
 	}
 
 }

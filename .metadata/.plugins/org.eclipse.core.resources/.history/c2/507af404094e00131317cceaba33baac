@@ -1,0 +1,30 @@
+package Reader;
+
+import Reader.ReadWorld;
+import Visualiser.Editor.*;
+import java.util.*;
+import java.io.*;
+
+public class MissionPack {
+	
+	private ArrayList<World> worlds;
+	
+	public MissionPack(){
+		
+	}
+	
+	public void addWorld(World world){
+		if(!this.worlds.contains(world)){
+			this.worlds.add(world);
+		}
+	}
+	
+	public World getWorld(int index){
+		return worlds.get(index);
+	}
+	
+	public MissionPack readMissions(String file) throws IOException{
+		
+	}
+
+}

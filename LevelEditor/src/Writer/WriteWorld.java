@@ -2,6 +2,7 @@ package Writer;
 
 import Visualiser.Editor.*;
 import java.io.*;
+import Reader.MissionPack;
 
 /**
  * Deze klasse heeft de write methodes voor een World en een Maze, die in combinatie gebruikt worden om een
@@ -11,7 +12,16 @@ import java.io.*;
  */
 public class WriteWorld {
 	
-	private World world;
+	private static World world;
+	
+	public static void missionPackWriter(BufferedWriter out, MissionPack mp) throws IOException{
+		int aantal = mp.getSize();
+		
+		out.write(Integer.toString(aantal)); out.newLine();
+		for(int num = 0; num < aantal; num++){
+			worldWriter(out, mp.getWorld(num));
+		}
+	}
 	
 	/**
 	 * De WorldWriter maakt de Writer aan die doorgegeven wordt aan MazeWriter en geeft de naam van de World
@@ -21,28 +31,16 @@ public class WriteWorld {
 	 * @param wor De World die geschreven moet worden
 	 * @throws IOException Een exception kan opgegooid worden als de naam van de .txt file niet gevonden kan worden
 	 */
-	public void WorldWriter(World wor) throws IOException{
+	public static void worldWriter(BufferedWriter out, World wor) throws IOException{
 		int dim = wor.getDim();
 		world = wor;
 		String name = wor.getName();
-		File level = new File(name + ".txt");
-		BufferedWriter out = null;
-		boolean itWorked = false;
 		
-		try{
-			out = new BufferedWriter(new FileWriter(level));
-			itWorked = true;
-		}
-		catch(FileNotFoundException excepzione){
-			System.out.println("File voor wegschrijven van " + name + " is niet gevonden, check");
-		}
-		
-		if(itWorked){
-			out.write(Integer.toString(dim));
-			out.newLine(); out.newLine();
-			for(int height = 0; height < dim; height++){
-				MazeWriter(out, height);
-			}
+		out.write(name); out.newLine(); out.newLine();
+		out.write(Integer.toString(dim));
+		out.newLine(); out.newLine();
+		for(int height = 0; height < dim; height++){
+			mazeWriter(out, height);	
 		}
 	}
 	
@@ -54,7 +52,7 @@ public class WriteWorld {
 	 * @param height Geeft aan welke Maze(op hoogte height in de World) geschreven moet worden naar de .txt file
 	 * @throws IOException Gooit een exception op als er een schrijffout is
 	 */
-	public void MazeWriter(BufferedWriter out, int height) throws IOException{
+	public static void mazeWriter(BufferedWriter out, int height) throws IOException{
 		try{
 		out.write(world.getHoriLayerH(height).maze.toString());
 		out.newLine();

@@ -1,0 +1,20 @@
+package Main;
+
+import Reader.*;
+import Writer.WriteWorld;
+import Visualiser.Editor.*;
+import java.io.*;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException{
+		MissionPack mp = null;
+		try{
+			mp = MissionPack.readMissions("TestMissions.txt");
+		}catch(FileNotFoundException excepzione){
+			
+		}
+
+	}
+
+}

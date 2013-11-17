@@ -1,0 +1,42 @@
+package Reader;
+
+import Visualiser.Editor.*;
+import java.io.*;
+import java.util.*;
+
+public class ReadWorld {
+	
+	private String file;
+	private Scanner read;
+	private World world;
+	
+	public World readWorld(String filename) throws IOException{
+		file = filename;
+		int dim = 0;
+		String name = "";
+		
+		try{
+			read = new Scanner(new File(file));
+			name = read.next();
+			dim = read.nextInt();
+		}catch(FileNotFoundException excepzione){
+			System.out.println("A file with the given name does not exist, please check the filename.");
+			return null;
+		}catch(NumberFormatException excepzione){
+			System.out.println("The dimension of the level in the file is not represented by a number.");
+			return null;
+		}
+		world = new World(dim, name);
+		
+		for(int i = 0; i < world.getDim(); i++){
+			readMaze(world, read);
+		}
+		
+		return world;
+	}
+	
+	public void readMaze(World wor, Scanner reader){
+		
+	}
+
+}

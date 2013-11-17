@@ -1,0 +1,46 @@
+package Reader;
+
+import Reader.ReadWorld;
+import Visualiser.Editor.*;
+import java.util.*;
+import java.io.*;
+
+public class MissionPack {
+	
+	private ArrayList<World> worlds;
+	private Scanner read;
+	
+	public MissionPack(){
+		
+	}
+	
+	public void addWorld(World world){
+		if(!this.worlds.contains(world)){
+			this.worlds.add(world);
+		}
+	}
+	
+	public World getWorld(int index){
+		return worlds.get(index);
+	}
+	
+	public MissionPack readMissions(String file) throws IOException{
+		int aantal = 0;
+		MissionPack mp = new MissionPack();
+		
+		try{
+			read = new Scanner(new File(file));
+			aantal = read.nextInt();
+		}catch(FileNotFoundException excepzione){
+			System.out.println("The file with name " + file + " does not exist, check the given name.");
+			return null;
+		}catch(NumberFormatException excepzione){
+			System.out.println("The amount of worlds in the file is not represented by an integer!");
+			return null;
+		}
+		for(int num = 0; num < aantal; num++){
+			mp.addWorld(World.read(read));
+		}
+	}
+
+}

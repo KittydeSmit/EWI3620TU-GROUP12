@@ -1,0 +1,15 @@
+package Main;
+
+import Reader.*;
+import Writer.WriteWorld;
+import Visualiser.Editor.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+
+	}
+
+}

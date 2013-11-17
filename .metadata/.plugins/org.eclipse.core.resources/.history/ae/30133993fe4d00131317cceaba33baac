@@ -1,0 +1,16 @@
+package Reader;
+
+import Reader.ReadWorld;
+import Visualiser.Editor.*;
+import java.util.*;
+import java.io.*;
+
+public class MissionPack {
+	
+	private ArrayList<World> worlds;
+	
+	public MissionPack(ArrayList<World> ar){
+		worlds = ar;
+	}
+
+}

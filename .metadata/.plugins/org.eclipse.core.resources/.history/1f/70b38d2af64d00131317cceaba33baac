@@ -1,0 +1,18 @@
+package Reader;
+
+import Visualiser.Editor.*;
+import java.io.*;
+import java.util.*;
+
+public class ReadWorld {
+	
+	private String file;
+	private Scanner read;
+	
+	public World readWorld(String filename) throws IOException{
+		file = filename;
+		
+		
+	}
+
+}

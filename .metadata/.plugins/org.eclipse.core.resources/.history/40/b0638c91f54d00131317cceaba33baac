@@ -1,0 +1,14 @@
+package Reader;
+
+import Visualiser.Editor.*;
+import java.io.*;
+
+public class ReadWorld {
+	
+	private String file;
+	
+	public World readWorld(String filename) throws IOException{
+		
+	}
+
+}

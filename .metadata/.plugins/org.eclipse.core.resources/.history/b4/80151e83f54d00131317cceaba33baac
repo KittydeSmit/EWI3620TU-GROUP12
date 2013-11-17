@@ -1,0 +1,11 @@
+package Reader;
+
+import Visualiser.Editor.*;
+
+public class ReadWorld {
+	
+	private String file;
+	
+	
+
+}
