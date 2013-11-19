@@ -37,7 +37,7 @@ public class ReadWorld {
 			return null;
 		}
 		world = new World(dim, name);
-		Dummies.createDummy(world);
+		//Dummies.createDummy(world);
 		
 		for(int i = 0; i < world.getDim(); i++){
 			setLayers(world, read);

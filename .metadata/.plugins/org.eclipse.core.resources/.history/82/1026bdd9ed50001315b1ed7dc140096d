@@ -53,7 +53,7 @@ public class ReadWorld {
 			for(int hCoord = 0; hCoord < dim; hCoord++){
 				for(int iCoord = 0; iCoord < dim; iCoord++){
 					for(int jCoord = 0; jCoord < dim; jCoord++){
-						world.getLevel().get(hCoord).setMazeCoord(iCoord, jCoord, read.nextInt());
+						world.getLevel()[hCoord].setMazeCoord(iCoord, jCoord, read.nextInt());
 					}
 				}
 			}

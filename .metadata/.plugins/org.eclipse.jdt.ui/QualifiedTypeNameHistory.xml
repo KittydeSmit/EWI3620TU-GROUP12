@@ -2,4 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="Reader.ReadWorld"/>
 <fullyQualifiedTypeName name="Writer.WriteWorld"/>
+<fullyQualifiedTypeName name="Reader.MissionPack"/>
+<fullyQualifiedTypeName name="DummyWorld.Dummies"/>
 </qualifiedTypeNameHistroy>

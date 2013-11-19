@@ -1,7 +1,7 @@
 package Reader;
 
 import Visualiser.Editor.*;
-import DummyWorld.Dummies;
+
 import java.io.*;
 import java.util.*;
 
@@ -37,7 +37,6 @@ public class ReadWorld {
 			return null;
 		}
 		world = new World(dim, name);
-		Dummies.createDummy(world);
 		
 		for(int i = 0; i < world.getDim(); i++){
 			setLayers(world, read);
@@ -53,7 +52,7 @@ public class ReadWorld {
 			for(int hCoord = 0; hCoord < dim; hCoord++){
 				for(int iCoord = 0; iCoord < dim; iCoord++){
 					for(int jCoord = 0; jCoord < dim; jCoord++){
-						world.getLevel().get(hCoord).setMazeCoord(iCoord, jCoord, read.nextInt());
+						world.getLevel()[hCoord].setMazeCoord(iCoord, jCoord, read.nextInt());
 					}
 				}
 			}

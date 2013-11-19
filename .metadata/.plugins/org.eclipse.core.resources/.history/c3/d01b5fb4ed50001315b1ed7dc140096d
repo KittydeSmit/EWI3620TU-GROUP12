@@ -90,7 +90,7 @@ public class World {
 	 * @return Retourneert de (binaire) waarde gevonden op het gespecifeerde punt
 	 */
 	public int getCoordValue(int i, int j, int h){
-		return level.get(h).getMazeCoord(i, j);
+		return level[h].getMazeCoord(i, j);
 	}
 	
 	/**
@@ -135,7 +135,7 @@ public class World {
 				return !theSame;
 			}else if(this.getDim() == that.getDim()){
 				for(int hCoord = 0; hCoord < this.getDim(); hCoord++){
-					if(!this.level.get(hCoord).equals(that.level.get(hCoord))){
+					if(!this.level[hCoord].equals(that.level[hCoord])){
 						return !theSame;
 					}
 				}

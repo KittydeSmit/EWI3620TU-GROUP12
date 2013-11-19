@@ -1,0 +1,13 @@
+package DummyWorld;
+
+import Visualiser.Editor.*;
+
+public class Dummies {
+	
+	public static void createDummy(World wor){
+		int dim = wor.getDim();
+		
+		
+	}
+
+}

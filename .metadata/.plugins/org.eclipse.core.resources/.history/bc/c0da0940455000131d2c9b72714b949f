@@ -8,7 +8,7 @@ package Visualiser.Editor;
  */
 public class Maze {
 	
-	public int[][] maze;
+	private int[][] maze;
 	private int dimension;
 	
 	/**
